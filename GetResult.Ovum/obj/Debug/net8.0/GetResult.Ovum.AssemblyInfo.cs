@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GetResult.Ovum")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f6efb4334221e06f94d0e129918d9933680bd231")]
 [assembly: System.Reflection.AssemblyProductAttribute("GetResult.Ovum")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GetResult.Ovum")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
