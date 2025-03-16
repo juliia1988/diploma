@@ -1,0 +1,21 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #007BFF;
+}
+
+.card {
+    max-width: 500px;
+    margin: auto;
+}
+
+button {
+    font-size: 18px;
+}
+
+.alert {
+    text-align: center;
+    font-size: 18px;
+}

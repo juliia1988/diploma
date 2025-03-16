@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egg Quality Prediction</title>
+    <!-- Підключаємо Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Підключаємо CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Ovum Quality Prediction</h1>
+    <div class="card shadow-sm p-4">
+        <form id="predictionForm">
+            <div class="mb-3">
+                <label for="amh" class="form-label">AMH (ng/mL):</label>
+                <input type="number" step="0.01" id="amh" name="amh" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="fsh" class="form-label">FSH (mIU/mL):</label>
+                <input type="number" step="0.01" id="fsh" name="fsh" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="lh_fsh" class="form-label">LH/FSH Ratio:</label>
+                <input type="number" step="0.01" id="lh_fsh" name="lh_fsh" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="pcos" class="form-label">PCOS:</label>
+                <select id="pcos" name="pcos" class="form-select">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="estradiol" class="form-label">Estradiol (pg/mL):</label>
+                <input type="number" step="0.01" id="estradiol" name="estradiol" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="afc" class="form-label">AFC (Antral Follicle Count):</label>
+                <input type="number" id="afc" name="afc" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="prl" class="form-label">PRL (Prolactin, ng/mL):</label>
+                <input type="number" step="0.01" id="prl" name="prl" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="glucose" class="form-label">Glucose (mg/dL):</label>
+                <input type="number" step="0.01" id="glucose" name="glucose" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="age" class="form-label">Age (Years):</label>
+                <input type="number" id="age" name="age" class="form-control" required>
+            </div>
+
+            <!-- Спінер для очікування -->
+            <div id="loading" class="text-center d-none">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p>Processing...</p>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Predict</button>
+        </form>
+        <div id="result" class="alert mt-4 d-none"></div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- JavaScript для API -->
+<script src="app.js"></script>
+</body>
+</html>
