@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ovum Quality Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Ovum Quality Prediction</h1>
+
+    <div class="card shadow-sm p-4">
+        <form id="advancedForm">
+            <h3 class="text-center">Additional Parameters</h3>
+
+            <div class="mb-3">
+                <label for="I_beta_HCG_mIU_mL" class="form-label">Beta HCG (mIU/mL):</label>
+                <input type="number" step="0.01" id="I_beta_HCG_mIU_mL" name="I_beta_HCG_mIU_mL" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Age_yrs" class="form-label">Age (Years):</label>
+                <input type="number" id="Age_yrs" name="Age_yrs" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="BMI" class="form-label">BMI:</label>
+                <input type="number" step="0.01" id="BMI" name="BMI" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Cycle_length_days" class="form-label">Cycle length (days):</label>
+                <input type="number" id="Cycle_length_days" name="Cycle_length_days" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Cycle_R_I" class="form-label">Cycle (R/I):</label>
+                <select id="Cycle_R_I" name="Cycle_R_I" class="form-select">
+                    <option value="0">Irregular</option>
+                    <option value="1">Regular</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="Fast_food_Y_N" class="form-label">Fast food (Y/N):</label>
+                <select id="Fast_food_Y_N" name="Fast_food_Y_N" class="form-select">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="Hair_loss_Y_N" class="form-label">Hair loss (Y/N):</label>
+                <select id="Hair_loss_Y_N" name="Hair_loss_Y_N" class="form-select">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="Hb_g_dl" class="form-label">Hb (g/dl):</label>
+                <input type="number" step="0.01" id="Hb_g_dl" name="Hb_g_dl" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Height_Cm" class="form-label">Height (cm):</label>
+                <input type="number" step="0.01" id="Height_Cm" name="Height_Cm" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Hip_inch" class="form-label">Hip (inch):</label>
+                <input type="number" step="0.01" id="Hip_inch" name="Hip_inch" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Marraige_Status_Yrs" class="form-label">Marriage Status (Yrs):</label>
+                <input type="number" id="Marraige_Status_Yrs" name="Marraige_Status_Yrs" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="PRG_ng_mL" class="form-label">PRG (ng/mL):</label>
+                <input type="number" step="0.01" id="PRG_ng_mL" name="PRG_ng_mL" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Pimples_Y_N" class="form-label">Pimples (Y/N):</label>
+                <select id="Pimples_Y_N" name="Pimples_Y_N" class="form-select">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="Pulse_rate_bpm" class="form-label">Pulse rate (bpm):</label>
+                <input type="number" id="Pulse_rate_bpm" name="Pulse_rate_bpm" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="RBS_mg_dl" class="form-label">RBS (mg/dl):</label>
+                <input type="number" step="0.01" id="RBS_mg_dl" name="RBS_mg_dl" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Reg_Exercise_Y_N" class="form-label">Regular Exercise (Y/N):</label>
+                <select id="Reg_Exercise_Y_N" name="Reg_Exercise_Y_N" class="form-select">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="Skin_darkening_Y_N" class="form-label">Skin darkening (Y/N):</label>
+                <select id="Skin_darkening_Y_N" name="Skin_darkening_Y_N" class="form-select">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="Vit_D3_ng_mL" class="form-label">Vit D3 (ng/mL):</label>
+                <input type="number" step="0.01" id="Vit_D3_ng_mL" name="Vit_D3_ng_mL" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Waist_inch" class="form-label">Waist (inch):</label>
+                <input type="number" step="0.01" id="Waist_inch" name="Waist_inch" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Weight_Kg" class="form-label">Weight (Kg):</label>
+                <input type="number" step="0.01" id="Weight_Kg" name="Weight_Kg" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="weightGain" class="form-label">Weight gain (Y/N):</label>
+                <select id="weightGain" name="weightGain" class="form-select">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="hairGrowth" class="form-label">Hair growth (Y/N):</label>
+                <select id="hairGrowth" name="hairGrowth" class="form-select">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            
+
+            <button type="submit" class="btn btn-success w-100">Get Prediction</button>
+        </form>
+
+
+        <div id="loadingAdvanced" class="text-center d-none">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p>Processing...</p>
+        </div>
+
+        <div id="resultAdvanced" class="alert mt-4 d-none"></div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- JavaScript для API -->
+<script src="advanced.js"></script>
+</body>
+</html>

@@ -31,3 +31,4 @@ C:\Users\yuliia.sokolova\RiderProjects\sokolova-diploma\GetResult.Ovum\obj\Debug
 C:\Users\yuliia.sokolova\RiderProjects\sokolova-diploma\GetResult.Ovum\obj\Debug\net8.0\GetResult.Ovum.genruntimeconfig.cache
 C:\Users\yuliia.sokolova\RiderProjects\sokolova-diploma\GetResult.Ovum\obj\Debug\net8.0\ref\GetResult.Ovum.dll
 C:\Users\yuliia.sokolova\RiderProjects\sokolova-diploma\GetResult.Ovum\obj\Debug\net8.0\GetResult.Ovum.csproj.CopyComplete
+C:\Users\yuliia.sokolova\RiderProjects\sokolova-diploma\GetResult.Ovum\obj\Debug\net8.0\GetResult.Ovum.sourcelink.json

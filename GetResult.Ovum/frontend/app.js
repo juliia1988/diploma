@@ -1,7 +1,7 @@
 document.getElementById("predictionForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const submitButton = document.querySelector("button[type='submit']");
+    const submitButton = document.querySelector("#predictionForm button[type='submit']");
     const loadingSpinner = document.getElementById("loading");
     const resultDiv = document.getElementById("result");
 
@@ -28,7 +28,7 @@ document.getElementById("predictionForm").addEventListener("submit", async funct
         submitButton.disabled = true;
         resultDiv.classList.add("d-none");
 
-        const response = await fetch("http://localhost:5233/api/classification/classify-extended", {
+        const response = await fetch("http://localhost:5233/api/classification/basic", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
@@ -71,12 +71,23 @@ document.getElementById("predictionForm").addEventListener("submit", async funct
             alertClass = "alert-warning";
             resultText = `
                 <strong>🟡 Неможливо визначити якість яйцеклітини.</strong><br>
-                Деякі показники виходять за межі очікуваних значень. Можливо, потрібно додаткове тестування.
+                Деякі показники виходять за межі очікуваних значень. Можливо, потрібно додаткове тестування.<br>
+                <button id="advancedTestButton" class="btn btn-outline-primary mt-2">🔎 Додаткове тестування</button>
             `;
         }
 
         resultDiv.classList.add(alertClass);
         resultDiv.innerHTML = resultText;
+
+        // 🔹 Додаємо слухача подій для кнопки "Додаткове тестування"
+        setTimeout(() => {
+            const advancedTestButton = document.getElementById("advancedTestButton");
+            if (advancedTestButton) {
+                advancedTestButton.addEventListener("click", () => {
+                    window.location.href = "advanced.html"; // 🔹 Перенаправлення на Advanced форму
+                });
+            }
+        }, 100);
 
     } catch (error) {
         console.error("Error:", error);
@@ -87,3 +98,100 @@ document.getElementById("predictionForm").addEventListener("submit", async funct
         resultDiv.innerHTML = `⚠️ Error: ${error.message}`;
     }
 });
+
+// Обробник для форми Advanced
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("DOM Loaded, script running...");
+
+    const advancedForm = document.getElementById("advancedForm");
+
+    if (advancedForm) {
+        console.log("Advanced form found, adding event listener...");
+
+        advancedForm.addEventListener("submit", async function (e) {
+            e.preventDefault(); // Зупиняємо оновлення сторінки
+            console.log("Advanced form submitted!");
+
+            const submitButton = document.querySelector("#advancedForm button[type='submit']");
+            const loadingSpinner = document.getElementById("loadingAdvanced");
+            const resultDiv = document.getElementById("resultAdvanced");
+
+            if (!submitButton || !loadingSpinner || !resultDiv) {
+                console.error("❌ Не знайдені потрібні елементи для обробки!");
+                return;
+            }
+
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+
+            console.log("📩 Надсилаємо дані:", data);
+
+            // Перетворюємо всі числові значення
+            Object.keys(data).forEach(key => {
+                if (!isNaN(data[key])) {
+                    data[key] = parseFloat(data[key]);
+                }
+            });
+
+            try {
+                loadingSpinner.classList.remove("d-none");
+                submitButton.disabled = true;
+                resultDiv.classList.add("d-none");
+
+                console.log("🚀 Відправляємо запит до API...");
+
+                const response = await fetch("http://localhost:5233/api/classification/advanced", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data),
+                });
+
+                const textResponse = await response.text();
+                console.log("🔄 Відповідь API:", textResponse);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP Error ${response.status}: ${textResponse}`);
+                }
+
+                const resultData = JSON.parse(textResponse);
+                console.log("✅ Отримана відповідь від сервера:", resultData);
+
+                loadingSpinner.classList.add("d-none");
+                submitButton.disabled = false;
+                resultDiv.classList.remove("d-none", "alert-danger", "alert-success");
+
+                let resultText = "";
+                let alertClass = "";
+
+                if (resultData.group === 1) {
+                    alertClass = "alert-success";
+                    resultText = `
+                        <strong>🟢 Висока ймовірність якісної яйцеклітини!</strong><br>
+                        Всі показники в нормі. Ваш гормональний баланс підходить для забору яйцеклітини.
+                    `;
+                } else {
+                    alertClass = "alert-danger";
+                    resultText = `
+                        <strong>🔴 Недостатня якість яйцеклітини.</strong><br>
+                        Ваші показники свідчать про можливі гормональні порушення.
+                    `;
+                }
+
+                resultDiv.classList.add(alertClass);
+                resultDiv.innerHTML = resultText;
+
+            } catch (error) {
+                console.error("❌ Error:", error);
+                loadingSpinner.classList.add("d-none");
+                submitButton.disabled = false;
+                resultDiv.classList.remove("d-none", "alert-success");
+                resultDiv.classList.add("alert-danger");
+                resultDiv.innerHTML = `⚠️ Error: ${error.message}`;
+            }
+        });
+    } else {
+        console.error("❌ Advanced form not found!");
+    }
+});
+
+
